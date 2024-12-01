@@ -1,6 +1,6 @@
 # Task List
 
-This project is a **task list website** that allows you to add itemized text to a list stored in browser's local storage. Data stored is persistent withing a browser of a device it was input.
+This project is a **task list website** that allows you to add itemized text to a list stored in browser's local storage. Data stored is persistent within a browser of a device it was input.
 
 ## Features
 
