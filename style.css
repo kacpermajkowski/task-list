@@ -6,8 +6,6 @@
 body{
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
 }
 
 .divider-solid{
@@ -18,6 +16,13 @@ body{
 }
 
 .app{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.tasklist-container{
     width: 500px;
     margin-top: 150px;
     border: 1px solid black;
@@ -39,14 +44,14 @@ body{
     width: fit-content;
 }
 
-.add-task{
+.task-form-container{
     width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.add-task-form{
+.task-form{
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -54,19 +59,19 @@ body{
     margin-bottom: 20px;
 }
 
-.add-task-input{
+.task-form-input{
     height: 100%;
     width: 73%;
     padding-left: 6px;
 }
 
-.add-task-submit{
+.task-form-submit{
     background-color:aquamarine;
     cursor: pointer;
     width: 25%;
 }
 
-.task-list{
+.tasklist-list{
     width: 85%;
 }
 
