@@ -32,6 +32,8 @@ export default function TaskList() {
         </li>
     )} </ul>;
 
+    let [inputValue, setInputValue] = useState('');
+
     content = tasklist.length > 0 ? content : <p className='tasklist-list'>Time to put in some tasks and get to work!</p>;
 
     const onFormSubmit = (e: FormEvent) => {
@@ -40,10 +42,12 @@ export default function TaskList() {
         let newTasklist = [...tasklist];
         newTasklist.push(new Task(newTaskName));
         setTasklist(newTasklist);
+        setInputValue("");
     };
 
     const onNewTaskNameChange = (e: ChangeEvent<HTMLInputElement>) => {
         setNewTaskName(e.target.value);
+        setInputValue(e.target.value);
     }
 
     return (
@@ -59,7 +63,7 @@ export default function TaskList() {
             <div className="task-form-container">
                 <h2 className="title">Add new task</h2>
                 <form className="task-form" method="POST" onSubmit={onFormSubmit}>
-                    <input type="text" name="task-name" className="task-form-input" onChange={onNewTaskNameChange}/>
+                    <input type="text" name="task-name" className="task-form-input" value={inputValue} onChange={onNewTaskNameChange}/>
                     <button type="submit" className="task-form-submit">Add</button>
                 </form>
             </div>
