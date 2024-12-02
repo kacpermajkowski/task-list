@@ -7,33 +7,31 @@ This project is a **task list website** that allows you to add itemized text to 
 - Add tasks to a list.
 - The tasks will be there when you open the website again.
 - Delete the task when you've completed it.
-- A nice user interface.
-
+- An acceptaple user interface.
 
 ## Usage
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/kacpermajkowski/task-list.git
    cd task-list
    ```
 
-2. **Install TypeScript compiler using NPM**
-   ```
-   npm i -g typescript
+2. **Install dependencies using `pnpm`**
+
+   ```bash
+    pnpm i
    ```
 
-    You can download Node.js along with NPM [here](https://nodejs.org/en) if you don't already have it installed.
-
-3. **Compile the TypeScript files**
+3. **Run the project**
    ```
-    tsc -t es2022 script.ts tasklist.ts
+    pnpm run dev
    ```
-   
-4. **Copy all `.html`, `.css` and compiled `.js` files into location of choice**
-   
-   After which you can open `index.html` in a browser or enter an adress of a web server you hosted the files **and enjoy :)**
+4. **Aaaand, it's done! :D**
 
-5. **License**
+   Now you can access the website at http://localhost:3000 **and enjoy :)**
 
-   This project is open-source and available under the MIT License.
+## License
+
+This project is open-source and available under the MIT License.
