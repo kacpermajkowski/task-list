@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, FormEvent, MouseEvent, use, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, MouseEvent, use, useCallback, useEffect, useState } from 'react';
 import {Task} from '../models/Task';
 
 export default function TaskList() {
@@ -32,23 +32,24 @@ export default function TaskList() {
         </li>
     )} </ul>;
 
-    let [inputValue, setInputValue] = useState('');
-
     content = tasklist.length > 0 ? content : <p className='tasklist-list'>Time to put in some tasks and get to work!</p>;
 
-    const onFormSubmit = (e: FormEvent) => {
+    const onFormSubmit = useCallback((e: FormEvent) => {
         e.preventDefault();
 
+        if(newTaskName == '')
+            return;
+        
         let newTasklist = [...tasklist];
         newTasklist.push(new Task(newTaskName));
         setTasklist(newTasklist);
-        setInputValue("");
-    };
+        setNewTaskName('');
+    }, [tasklist, newTaskName, setTasklist, setNewTaskName]);
 
-    const onNewTaskNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const onNewTaskNameChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setNewTaskName(e.target.value);
-        setInputValue(e.target.value);
-    }
+        setNewTaskName(e.target.value);
+    }, [setNewTaskName])
 
     return (
         <div className="tasklist-container">
@@ -63,7 +64,7 @@ export default function TaskList() {
             <div className="task-form-container">
                 <h2 className="title">Add new task</h2>
                 <form className="task-form" method="POST" onSubmit={onFormSubmit}>
-                    <input type="text" name="task-name" className="task-form-input" value={inputValue} onChange={onNewTaskNameChange}/>
+                    <input type="text" name="task-name" className="task-form-input" value={newTaskName} onChange={onNewTaskNameChange}/>
                     <button type="submit" className="task-form-submit">Add</button>
                 </form>
             </div>
