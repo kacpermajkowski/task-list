@@ -1,7 +1,8 @@
 "use client";
 
 import { ChangeEvent, FormEvent, MouseEvent, use, useCallback, useEffect, useState } from 'react';
-import {Task} from '../models/Task';
+import {Task} from './Task';
+import "./TaskList.css";
 
 export default function TaskList() {
     const [tasklist, setTasklist] = useState<Task[]>([]);

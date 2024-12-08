@@ -1,0 +1,21 @@
+body{
+    padding: 1.5rem;
+}
+
+.navbar{
+    width: 100%;
+    padding: 1rem;
+    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+    height: 4rem;
+    border-radius: 1.25rem;
+    font-size: 18px;
+}
+
+.navbar > *{
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}

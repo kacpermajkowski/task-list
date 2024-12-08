@@ -1,8 +1,10 @@
 import Image from "next/image";
-import TaskList from "./view/TaskList";
+import TaskList from "./panel/TaskList";
+import App from "./panel/page";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <TaskList></TaskList>
+    <Link href="/panel">Go to app</Link>
   );
 }
