@@ -1,7 +1,10 @@
 import './Navbar.css';
 
+import { PanelContextType, PanelContext } from '../page';
+import React from 'react';
+
 export default function Navbar(){
-    let tasklistName = "test";
+    const { currentTasklistName, setCurrentTasklistName } = React.useContext<PanelContextType>(PanelContext);
     return <>
         <nav className="navbar">
             <div className="navbar-start">
@@ -11,7 +14,7 @@ export default function Navbar(){
             </div>
             <div className="navbar-center">
                 You are currently in <span className="takslist-name">
-                    &nbsp;{tasklistName}&nbsp;
+                    &nbsp;{currentTasklistName}&nbsp;
                 </span> tasklist
             </div>
             <div className="navbar-end">

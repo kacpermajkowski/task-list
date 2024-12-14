@@ -1,9 +1,9 @@
 "use client";
 
-import { randomUUID, UUID } from "crypto";
+import Label from "./Label";
 import Labelable from "./Labelable";
 
-export class Task extends Labelable{
+export class TaskData extends Labelable{
     private done: boolean = false;
 
     private name: string;
@@ -16,7 +16,6 @@ export class Task extends Labelable{
     private assigneeId: number | undefined;
 
     private dueDate: Date | undefined;
-    private dependentOn: Task[] = [];
 
     constructor(
         name: string,
@@ -24,7 +23,6 @@ export class Task extends Labelable{
         description?: string,
         assigneeId?: number,
         dueDate?: Date,
-        dependentOn?: Task[],
     ) {
         super();
         this.name = name;
@@ -32,7 +30,6 @@ export class Task extends Labelable{
         this.creatorId = creatorId;
         this.assigneeId = assigneeId;
         this.dueDate = dueDate;
-        this.dependentOn = dependentOn || this.dependentOn;
     }
 
     setName(name: string): void {
@@ -53,23 +50,6 @@ export class Task extends Labelable{
 
     setDueDate(dueDate: Date | undefined): void {
         this.dueDate = dueDate;
-    }
-
-    addDependentOn(task: Task): void {
-        if(this.dependentOn.includes(task)){
-            throw new Error('Task is already dependent on given task');
-        }
-
-        this.dependentOn.push(task);
-    }
-
-    removeDependentOn(task: Task): void {
-        let index = this.dependentOn.indexOf(task);
-        if(index === -1){
-            throw new Error('Task is not dependent on given task');
-        }
-
-        this.dependentOn.splice(index, 1);
     }
 
     getName(): string {
@@ -100,7 +80,25 @@ export class Task extends Labelable{
         return this.dueDate;
     }
 
-    getDependentOn(): Task[] {
-        return this.dependentOn;
+    static fromJson(json: string): TaskData {
+        const obj = JSON.parse(json);
+
+        if(!obj.name || !obj.creatorId){
+            throw new Error('Invalid JSON for Task');
+        }
+
+        const task = new TaskData(
+            obj.name,
+            obj.creatorId,
+            obj.description,
+            obj.assigneeId,
+            obj.dueDate ? new Date(obj.dueDate) : undefined,
+        );
+        task.setDone(obj.done || false);
+        task.timeOfCreation = new Date(obj.timeOfCreation);
+        if (obj.labels) {
+            obj.labels.forEach((label: Label) => task.addLabel(label));
+        }
+        return task;
     }
 }

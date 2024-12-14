@@ -1,5 +1,5 @@
 import Image from "next/image";
-import TaskList from "./panel/TaskList";
+import TaskList from "./panel/components/TaskList";
 import App from "./panel/page";
 import Link from "next/link";
 
